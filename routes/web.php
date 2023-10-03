@@ -1,10 +1,27 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/result', function () {
+  // $users = DB::insert('insert into users (name, email, password) values(?,?,?)', ['ali1', 'ali1@gmail.com', 'ali123']);
+  // $users = DB::table('users')->insert([
+  //   'name' => 'ali2',
+  //   'email' => 'ali2@gmail.com',
+  //   'password' =>'ali123'
+  // ]);
+  // $users = User::create([
+  //   'name' => 'ali',
+  //   'email' => 'ali@gmail.com',
+  //   'password' => 'ali123'
+  // ]);
+    $users = User::find(6);
+    dd($users->name);
 });
 
 Route::get('/dashboard', function () {
