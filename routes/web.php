@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Profile\AvatarController;
 
 Route::get('/', function () {
     return view('welcome');
