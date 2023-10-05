@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 
 class AvatarController extends Controller
 {
-    public function update()
+    public function update(Request $request)
     {
-      return back()->with(['message' => 'Avatar is changed successfully !']);
+      $request->validate([
+        'avatar' => 'image'
+      ]);
+      dd($request->all());
+      return back()->with('message','Avatar is changed successfully !');
     }
 }
