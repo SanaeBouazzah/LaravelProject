@@ -9,6 +9,11 @@
         </p>
     </header>
 
+    @if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+  @endif
 
     <form method="post" action="{{ route('profile.avatar') }}" class="mt-6 space-y-6">
         @csrf
