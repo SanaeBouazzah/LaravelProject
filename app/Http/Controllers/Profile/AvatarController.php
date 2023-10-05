@@ -9,6 +9,6 @@ class AvatarController extends Controller
 {
     public function update()
     {
-      return back()->withInput(['message' => 'Avatar is changed!']);
+      return back()->with(['message' => 'Avatar is changed successfully !']);
     }
 }

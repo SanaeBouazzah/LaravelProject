@@ -10,7 +10,7 @@
     </header>
 
     @if (session('message'))
-    <div class="alert alert-success">
+    <div class="text-red-500">
         {{ session('message') }}
     </div>
   @endif
