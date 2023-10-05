@@ -10,7 +10,7 @@ class AvatarController extends Controller
     public function update(Request $request)
     {
       $request->validate([
-        'avatar' => 'image'
+        'avatar' => ['required | image'],
       ]);
       dd($request->all());
       return back()->with('message','Avatar is changed successfully !');
