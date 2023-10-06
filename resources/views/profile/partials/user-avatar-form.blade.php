@@ -4,6 +4,10 @@
             User Avatar :
         </h2>
 
+       <div>
+        <img src="{{"storage/$user->avatar"}}" alt="user avatar">
+       </div>
+
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             Update User Avatar
         </p>
