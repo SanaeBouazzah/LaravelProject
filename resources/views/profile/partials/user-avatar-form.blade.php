@@ -5,7 +5,7 @@
         </h2>
 
        <div>
-        <img src="{{"storage/$user->avatar"}}" alt="user avatar">
+        <img src="{{"storage/$user->avatar"}}" alt="user avatar" width="100px" height="100px">
        </div>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
