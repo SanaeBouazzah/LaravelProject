@@ -10,11 +10,17 @@
 
 
        <form action="{{route('profile.avatar.ai')}}" method="post">
+        @csrf
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
           Generate Avatar from AI
         </p>
          <x-primary-button>Generate Avatar</x-primary-button>
         </form>
+
+
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+          Or
+        </p>
 
     </header>
 
@@ -29,7 +35,7 @@
         @method('patch')
 
         <div>
-            <x-input-label for="avatar" :value="__('Avatar')" />
+            <x-input-label for="avatar" :value="__('Upload Avatar from your device')" />
             <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar', $user->avatar)" required autofocus autocomplete="avatar" />
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
         </div>

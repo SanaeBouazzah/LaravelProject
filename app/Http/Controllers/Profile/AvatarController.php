@@ -19,4 +19,7 @@ class AvatarController extends Controller
       
       return back()->with('message','Avatar is changed successfully !');
     }
+    public function generate(){
+      
+    }
 }
