@@ -8,9 +8,14 @@
         <img src="{{"storage/$user->avatar"}}" alt="user avatar" width="100px" height="100px">
        </div>
 
+
+       <form action="{{route('profile.avatar.ai')}}" method="post">
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            Update User Avatar
+          Generate Avatar from AI
         </p>
+         <x-primary-button>Generate Avatar</x-primary-button>
+        </form>
+
     </header>
 
     @if (session('message'))
