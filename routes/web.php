@@ -3,7 +3,7 @@
 use App\Models\User;
 use OpenAI\Laravel\Facades\OpenAI;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Profile\AvatarController;
 
@@ -29,12 +29,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-Route::get('/openai', function(){
-  $result = OpenAI::images()->create([
-    "prompt"=> "Create Avatar for user and looks normal".auth()->user()->name,
-    "n"=> 1,
-    "size"=> "1024x1024"
-  ]);
-  return response(['url' => $result->data[0]->url]);
+ 
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
 });
