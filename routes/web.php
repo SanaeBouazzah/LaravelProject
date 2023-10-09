@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use OpenAI\Laravel\Facades\OpenAI;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\ProfileController;
@@ -30,6 +31,20 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
  
-Route::get('/auth/redirect', function () {
+Route::post('/auth/redirect', function () {
     return Socialite::driver('github')->redirect();
+})->name('login.github');
+
+Route::get('/auth/callback', function () {
+  $user = Socialite::driver('github')->user();
+  $user= User::firstOrCreate([
+    'email' => $user->email,
+  ],
+  [
+    'name' => $user->name,
+    'password' => 'password',
+  ]);
+  Auth::login($user);
+  return redirect('/dashboard');
+
 });
