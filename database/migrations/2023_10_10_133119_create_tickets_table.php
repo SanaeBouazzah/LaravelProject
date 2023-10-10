@@ -16,8 +16,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->string('status')->default(TicketStatus::OPEN);
-            $table->id('user_id');
+            $table->string('status')->default(TicketStatus::OPEN->value);
+            $table->string('attachments')->nullable();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('status_changed_by_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }
