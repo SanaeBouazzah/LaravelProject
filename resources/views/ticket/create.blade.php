@@ -1,3 +1,6 @@
 <x-app-layout>
-  <h1>hello sanae</h1>
+  <form action="{{route('ticket.store')}}" method="POST">
+    @csrf
+    <button>save</button>
+  </form>
 </x-app-layout>
