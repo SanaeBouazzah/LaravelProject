@@ -13,7 +13,7 @@
       </div>
       <div>
         <label>Attachment</label>
-        <x-file-input />
+        <x-file-input name="attachment" id="attachment"/>
       </div>
       <button>create</button>
     </fieldset>
