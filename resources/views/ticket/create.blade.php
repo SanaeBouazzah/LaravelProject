@@ -9,7 +9,7 @@
       </div>
       <div>
         <label>description</label><br/>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <x-textarea/>
       </div>
       <div>
         <label>Attachment</label>
