@@ -18,7 +18,13 @@ class TicketController extends Controller
     }
     public function store(StoreTicketRequest $request)
     {
-        //
+        $ticket = Ticket::create([
+          'title' => $request->title,
+          'description' => $request->description,
+          // 'attachment' => $request->attachment,
+          'user_id' => auth()->id(),
+        ]);
+        return response($ticket);
     }
     public function show(Ticket $ticket)
     {

@@ -5,7 +5,7 @@
       <legend>Create New Support Ticket</legend>
       <div>
         <label>Title</label>
-        <input type="text" name="title">
+        <input type="text" name="title" id="title">
         <x-input-error :messages="$errors->get('title')" class="mt-2" />
       </div>
       <div>
