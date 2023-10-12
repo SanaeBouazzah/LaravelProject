@@ -15,8 +15,8 @@
       </div>
       <div>
         <label>Attachment</label>
-        <x-file-input name="attachment" id="attachment"/>
-        <x-input-error :messages="$errors->get('attachment')" class="mt-2" />
+        <x-file-input name="attachments" id="attachments"/>
+        <x-input-error :messages="$errors->get('attachments')" class="mt-2" />
       </div>
       <button>create</button>
     </fieldset>
