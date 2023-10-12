@@ -1,5 +1,5 @@
 <x-app-layout>
-  <form action="{{route('ticket.store')}}" method="POST" >
+  <form action="{{route('ticket.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <fieldset style="width:50%; marign:0 auto;">
       <legend>Create New Support Ticket</legend>
