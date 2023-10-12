@@ -12,7 +12,7 @@ class TicketController extends Controller
 {
     public function index()
     {
-        //
+        return view('ticket.index');
     }
     public function create()
     {
