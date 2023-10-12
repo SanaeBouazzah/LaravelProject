@@ -15,5 +15,6 @@ class Ticket extends Model
       'description',
       'attachments',
       'user_id',
+      'created_at',
   ];
 }

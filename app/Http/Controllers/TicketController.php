@@ -7,12 +7,14 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
+use Illuminate\Database\Eloquent\Model;
 
 class TicketController extends Controller
 {
     public function index()
     {
-        return view('ticket.index');
+        $tickets = Ticket::all();
+        return view('ticket.index', compact('tickets'));
     }
     public function create()
     {
@@ -39,7 +41,7 @@ class TicketController extends Controller
           Storage::disk('public')->put($path, $contents);
           $ticket->update(['attachments' => $path]);
         }
-        return view('ticket.index')->with('message', 'you have created a ticket successfully!!!!!!!!!111');
+        return view('ticket.index');
     }
     public function show(Ticket $ticket)
     {

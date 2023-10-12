@@ -21,6 +21,9 @@
             <div class="flex flex-col justify-center">
               <a class="ml-3 bg-white rounde-lg" href="{{route('ticket.create')}}">Support Ticket</a>
             </div>
+            <div class="flex flex-col justify-center">
+              <a class="ml-3 bg-white rounde-lg" href="{{route('ticket.index')}}">My Tickets</a>
+            </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
