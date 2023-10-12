@@ -39,7 +39,7 @@ class TicketController extends Controller
           Storage::disk('public')->put($path, $contents);
           $ticket->update(['attachments' => $path]);
         }
-        return response($ticket);
+        return view('ticket.index')->with('message', 'you have created a ticket successfully!!!!!!!!!111');
     }
     public function show(Ticket $ticket)
     {
