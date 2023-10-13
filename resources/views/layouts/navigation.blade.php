@@ -22,7 +22,7 @@
               <a class="ml-3 bg-white rounde-lg" href="{{route('ticket.create')}}">Support Ticket</a>
             </div>
             <div class="flex flex-col justify-center">
-              <a class="ml-3 bg-white rounde-lg" href="{{route('ticket.index')}}">My Tickets</a>
+              <a class="ml-3 bg-white rounde-lg" href="{{route('ticket.index')}}">Tickets</a>
             </div>
 
             <!-- Settings Dropdown -->
