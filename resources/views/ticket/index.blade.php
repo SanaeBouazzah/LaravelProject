@@ -3,7 +3,7 @@
   <legend>Support Ticket</legend>
   <div>
     <h3>Title :</h3>
-    <a href="{{route('ticket.show')}}">{{$ticket->title}}</a>
+    <a href="{{route('ticket.show',$ticket->id)}}">{{$ticket->title}}</a>
   </div>
   <div>
     <h3>description :</h3>
