@@ -14,7 +14,7 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = Ticket::all();
-        return view('ticket.index', compact('tickets'));
+        return view('ticket.index', ['tickets' => $tickets]);
     }
     public function create()
     {
@@ -45,12 +45,11 @@ class TicketController extends Controller
     }
     public function show(Ticket $ticket)
     {
-        // $ticket = Ticket::find();
         return view('ticket.show', compact('ticket'));
     }
     public function edit(Ticket $ticket)
     {
-        //
+        return view('ticket.edit');
     }
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
@@ -58,6 +57,7 @@ class TicketController extends Controller
     }
     public function destroy(Ticket $ticket)
     {
-        //
+       $ticket->delete();
+        return view('ticket.index')->with('message', 'you have deleted ticket succh');
     }
 }
