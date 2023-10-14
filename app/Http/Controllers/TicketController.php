@@ -49,7 +49,7 @@ class TicketController extends Controller
     }
     public function edit(Ticket $ticket)
     {
-        return view('ticket.edit');
+        return view('ticket.edit', compact('ticket'));
     }
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {

@@ -10,8 +10,8 @@
       </div>
       <div>
         <label>description</label><br/>
-        <x-textarea/>
-        <x-input-error :messages="$errors->get('description')" class="mt-2" value="{{$ticket->descriptin}}"/>
+        <x-textarea name="description" id="description"/>
+        <x-input-error :messages="$errors->get('description')" class="mt-2" />
       </div>
       <div>
         <label>Attachment</label>
