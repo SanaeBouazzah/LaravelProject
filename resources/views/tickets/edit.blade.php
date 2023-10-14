@@ -1,6 +1,7 @@
 <x-app-layout>
-  <form action="{{route('ticket.update')}}" method="POST" enctype="multipart/form-data">
+  <form action="{{route('tickets.update', $ticket)}}" method="POST" enctype="multipart/form-data">
     @csrf
+    @method('put')
     <fieldset style="width:50%; marign:0 auto;">
       <legend>Update Support Ticket</legend>
       <div>

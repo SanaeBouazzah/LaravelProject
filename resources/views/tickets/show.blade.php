@@ -1,3 +1,6 @@
+@if (session('message'))
+    <p style="color:red;">{{session('message')}}</p>
+@endif
 <fieldset style="width:50%; marign:0 auto;">
   <legend><h4>Ticket :has created at: {{$ticket->created_at}}</h4></legend>
   <div>
@@ -8,12 +11,12 @@
     @endif
   </div>
   <br/>
-  <a href="{{route('ticket.edit', $ticket)}}">Edit</a>
-  <form action="{{route('ticket.destroy', $ticket->id)}}" method="POST">
+  <a href="{{route('tickets.edit', $ticket)}}">Edit</a>
+  <form action="{{route('tickets.destroy', $ticket->id)}}" method="POST">
     @csrf
     @method('delete')
     <button>Delete</button>
   </form>
 </fieldset>
 
-<a href="{{route('ticket.create')}}">Go Back</a>
+<a href="{{route('tickets.create')}}">Go Back</a>

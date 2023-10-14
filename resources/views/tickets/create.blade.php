@@ -1,5 +1,5 @@
 <x-app-layout>
-  <form action="{{route('ticket.store')}}" method="POST" enctype="multipart/form-data">
+  <form action="{{route('tickets.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <fieldset style="width:50%; marign:0 auto;">
       <legend>Create New Support Ticket</legend>
@@ -10,7 +10,7 @@
       </div>
       <div>
         <label>description</label><br/>
-        <x-textarea/>
+        <textarea name="description" id="description"></textarea>
         <x-input-error :messages="$errors->get('description')" class="mt-2" />
       </div>
       <div>

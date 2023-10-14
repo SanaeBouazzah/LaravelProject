@@ -51,5 +51,5 @@ Route::get('/auth/callback', function () {
 });
 
 Route::middleware('auth')->group(function(){
-  Route::resource('/ticket', TicketController::class);
+  Route::resource('/tickets', TicketController::class);
 });

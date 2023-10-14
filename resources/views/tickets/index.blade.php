@@ -9,7 +9,7 @@
   <legend>Support Ticket</legend>
   <div>
     <h3>Title :</h3>
-    <a href="{{route('ticket.show',$ticket->id)}}">{{$ticket->title}}</a>
+    <a href="{{route('tickets.show',$ticket->id)}}">{{$ticket->title}}</a>
   </div>
   <div>
     <h3>description :</h3>
@@ -27,4 +27,4 @@
 </fieldset>
 @endforeach
 
-<a href="{{route('ticket.create')}}">Go Back</a>
+<a href="{{route('tickets.create')}}">Go Back</a>

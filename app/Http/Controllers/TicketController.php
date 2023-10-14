@@ -14,11 +14,11 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = Ticket::all();
-        return view('ticket.index', ['tickets' => $tickets]);
+        return view('tickets.index', ['tickets' => $tickets]);
     }
     public function create()
     {
-      return view('ticket.create');
+      return view('tickets.create');
     }
     public function store(StoreTicketRequest $request)
     {
@@ -41,23 +41,24 @@ class TicketController extends Controller
           Storage::disk('public')->put($path, $contents);
           $ticket->update(['attachments' => $path]);
         }
-        return view('ticket.index');
+        return view('tickets.index');
     }
     public function show(Ticket $ticket)
     {
-        return view('ticket.show', compact('ticket'));
+        return view('tickets.show', compact('ticket'));
     }
     public function edit(Ticket $ticket)
     {
-        return view('ticket.edit', compact('ticket'));
+        return view('tickets.edit', compact('ticket'));
     }
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
-        //
+        $ticket->update($request->validated());
+        return view('tickets.show')->with('message', 'you have updated ticket succeffully!!!');
     }
     public function destroy(Ticket $ticket)
     {
        $ticket->delete();
-        return view('ticket.index')->with('message', 'you have deleted ticket succh');
+        return view('tickets.index')->with('message', 'you have deleted ticket succh');
     }
 }
