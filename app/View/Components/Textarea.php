@@ -8,9 +8,11 @@ use Illuminate\View\Component;
 
 class Textarea extends Component
 {
-    public function __construct()
+    public $value = '';
+
+    public function __construct($value)
     {
-        //
+        $this->value = $value;
     }
 
     /**

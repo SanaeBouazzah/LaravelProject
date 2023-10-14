@@ -1,5 +1,5 @@
 <x-app-layout>
-  <form action="" method="POST" enctype="multipart/form-data">
+  <form action="{{route('ticket.update')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <fieldset style="width:50%; marign:0 auto;">
       <legend>Update Support Ticket</legend>
@@ -10,15 +10,18 @@
       </div>
       <div>
         <label>description</label><br/>
-        <x-textarea name="description" id="description"/>
+        <x-textarea name="description" id="description" value="{{$ticket->description}}"/>
         <x-input-error :messages="$errors->get('description')" class="mt-2" />
       </div>
       <div>
         <label>Attachment</label>
+        @if ($ticket->attachments)
+            <a href="{{'/storage/'.$ticket->attachments}}">Link</a>
+        @endif
         <x-file-input name="attachments" id="attachments" value="{{$ticket->attachments}}"/>
         <x-input-error :messages="$errors->get('attachments')" class="mt-2" />
       </div>
-      <button>create</button>
+      <button>Update</button>
     </fieldset>
   </form>
 </x-app-layout>
