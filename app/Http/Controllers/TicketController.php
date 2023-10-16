@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Ticket;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
-use Illuminate\Database\Eloquent\Model;
 
 class TicketController extends Controller
 {
@@ -36,9 +37,9 @@ class TicketController extends Controller
         }
         return view('tickets.index');
     }
-    public function show(Ticket $ticket)
+    public function show(Ticket $ticket, User $user)
     {
-        return view('tickets.show', compact('ticket'));
+        return view('tickets.show', compact('ticket', 'user'));
     }
     public function edit(Ticket $ticket)
     {
@@ -46,6 +47,7 @@ class TicketController extends Controller
     }
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
+      dd($request->all());
         $ticket->update([
           'title' => $request->title,
           // 'description' => $request->description,

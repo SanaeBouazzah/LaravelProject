@@ -4,7 +4,7 @@
 </div>
 @endif
 
-@foreach ($tickets as $ticket)
+@forelse($tickets as $ticket)
 <fieldset style="width:50%; marign:0 auto;">
   <legend>Support Ticket</legend>
   <div>
@@ -25,6 +25,9 @@
     <p>{{$ticket->created_at->diffForHumans()}}</p>
   </div>
 </fieldset>
-@endforeach
+@empty
+<h1>you Don't have any tickets.</h1>
+<a href="{{route('tickets.create')}}">Create a Ticket</a>
+@endforelse
 
 <a href="{{route('tickets.create')}}">Go Back</a>
