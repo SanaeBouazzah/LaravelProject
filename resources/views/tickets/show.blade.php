@@ -23,11 +23,16 @@
     <form action="{{route('tickets.update', $ticket)}}" method="post">
       @csrf
       @method('patch')
-      <input type="hidden" name="status" value="approved">
+      <input type="hidden" name="status" value="resolved">
       <button>Approve</button>
     </form>
+    <form action="{{route('tickets.update', $ticket)}}" method="post">
+      @csrf
+      @method('patch')
+      <input type="hidden" name="status" value="rejected">
     <button>Reject</button>
   </div>
+</form>
   @else 
   <p>Status : {{$ticket->status}}</p>
   @endif
