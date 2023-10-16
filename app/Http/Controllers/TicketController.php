@@ -32,14 +32,7 @@ class TicketController extends Controller
         // $path = $request->file('attachments')->store('attachments', 'public');
         // $ticket->update(['attachment' => $path]);
         if($request->hasFile('attachments')){
-          $file = $request->file('attachments');
-          $contents = file_get_contents($request->file('attachments'));
-          $filename = $file->getClientOriginalName();
-          $extension = $file->getClientOriginalExtension();
-          $stored = Str::random(25). '.' . $extension;
-          $path = "attachments/$filename";
-          Storage::disk('public')->put($path, $contents);
-          $ticket->update(['attachments' => $path]);
+          $this->StoreAttachment($request, $ticket);
         }
         return view('tickets.index');
     }
@@ -53,12 +46,31 @@ class TicketController extends Controller
     }
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
-        $ticket->update($request->validated());
+        $ticket->update([
+          'title' => $request->title,
+          // 'description' => $request->description,
+          'attachments' => $request->attachments,
+        ]);
+        if($request->file('attachments')){
+          Storage::disk('public')->delete($request->attachments);
+          $this->StoreAttachment($request, $ticket);
+        }
         return view('tickets.show')->with('message', 'you have updated ticket succeffully!!!');
     }
     public function destroy(Ticket $ticket)
     {
        $ticket->delete();
         return view('tickets.index')->with('message', 'you have deleted ticket succh');
+    }
+    protected function StoreAttachment($ticket,$request)
+    {
+      $file = $request->file('attachments');
+      $contents = file_get_contents($request->file('attachments'));
+      $filename = $file->getClientOriginalName();
+      $extension = $file->getClientOriginalExtension();
+      $stored = Str::random(25). '.' . $extension;
+      $path = "attachments/$stored";
+      Storage::disk('public')->put($path, $contents);
+      $ticket->update(['attachments' => $path]);
     }
 }
