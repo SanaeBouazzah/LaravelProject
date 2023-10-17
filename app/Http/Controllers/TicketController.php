@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
+use App\Notifications\TicketUpdatedNotification;
 
 class TicketController extends Controller
 {
@@ -49,7 +50,10 @@ class TicketController extends Controller
     {
         $ticket->update($request->except('attachments'));
         if ($request->has('status')) {
-          
+          $user = User::find($ticket->user_id);
+          // $user->notify(new TicketUpdatedNotification($ticket));
+
+          return (new TicketUpdatedNotification($ticket))->toMail($user);
         }
         if($request->file('attachments')){
           Storage::disk('public')->delete($request->attachments);
