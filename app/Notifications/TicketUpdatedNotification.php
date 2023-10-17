@@ -32,7 +32,7 @@ class TicketUpdatedNotification extends Notification
         return (new MailMessage)
                     ->greeting("Hello {$notifiable->name}")
                     ->line('Ticket is updated.')
-                    ->action('Notification Action', route('tickets.show', $this->ticket->id))
+                    ->action('Check The Ticket', route('tickets.show', $this->ticket->id))
                     ->line('Thank you for using our application!');
     }
 }
