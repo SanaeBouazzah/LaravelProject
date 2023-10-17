@@ -24,7 +24,7 @@
       @csrf
       @method('patch')
       <input type="hidden" name="status" value="resolved">
-      <button>Approve</button>
+      <button>Resolve</button>
     </form>
     <form action="{{route('tickets.update', $ticket)}}" method="post">
       @csrf

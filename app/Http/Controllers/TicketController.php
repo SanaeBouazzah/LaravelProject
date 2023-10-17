@@ -48,6 +48,9 @@ class TicketController extends Controller
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
         $ticket->update($request->except('attachments'));
+        if ($request->has('status')) {
+          
+        }
         if($request->file('attachments')){
           Storage::disk('public')->delete($request->attachments);
           $this->StoreAttachment($request, $ticket);
