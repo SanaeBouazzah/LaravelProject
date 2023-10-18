@@ -38,9 +38,9 @@ class TicketController extends Controller
         }
         return view('tickets.index');
     }
-    public function show(Ticket $ticket, User $user)
+    public function show(Ticket $ticket)
     {
-        return view('tickets.show', compact('ticket', 'user'));
+        return view('tickets.show', compact('ticket'));
     }
     public function edit(Ticket $ticket)
     {
@@ -50,16 +50,15 @@ class TicketController extends Controller
     {
         $ticket->update($request->except('attachments'));
         if ($request->has('status')) {
-          $user = User::find($ticket->user_id);
-          // $user->notify(new TicketUpdatedNotification($ticket));
-
-          return (new TicketUpdatedNotification($ticket))->toMail($user);
+          // $user = User::find($ticket->user_id);
+          $ticket->user->notify(new TicketUpdatedNotification($ticket));
+          // return (new TicketUpdatedNotification($ticket))->toMail($user);
         }
         if($request->file('attachments')){
-          Storage::disk('public')->delete($request->attachments);
+          Storage::disk('public')->delete($ticket->attachments);
           $this->StoreAttachment($request, $ticket);
         }
-        return view('tickets.show')->with('message', 'you have updated ticket succeffully!!!');
+        return view('tickets.index')->with('message', 'you have updated ticket succeffully!!!');
     }
     public function destroy(Ticket $ticket)
     {
