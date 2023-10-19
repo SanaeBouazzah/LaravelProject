@@ -25,7 +25,7 @@ class AvatarController extends Controller
       $result = OpenAI::images()->create([
         "prompt"=> "Create Avatar for user".auth()->user()->name,
         "n"=> 1,
-        "size"=> "1024x1024"
+        "size"=> "1024x1024",
       ]);
 
       $contents =file_get_contents($result->data[0]->url);

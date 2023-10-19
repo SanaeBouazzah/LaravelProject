@@ -6,7 +6,9 @@
    
     <form action="{{route('login.github')}}" method="post">
       @csrf
-      <x-primary-button class="ml-3">Login with github</x-primary-button>
+      <div class="m-4">
+        <x-primary-button class="ml-3">Login with github</x-primary-button>
+      </div>
     </form>
 
     <form method="POST" action="{{ route('login') }}">
