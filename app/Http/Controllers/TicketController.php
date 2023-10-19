@@ -15,7 +15,8 @@ class TicketController extends Controller
 {
     public function index()
     {
-        $tickets = Ticket::all();
+        $user = auth()->user();
+        $tickets = $user->isAdmin ? Ticket::latest()->get() : $user->tickets;
         return view('tickets.index', ['tickets' => $tickets]);
     }
     public function create()
