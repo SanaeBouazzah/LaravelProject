@@ -14,13 +14,13 @@
               <div class="mt-4">
                   <x-input-label for="description" :value="__('Description')" />
                   <x-textarea placeholder="Add description" name="description" id="description" value="" />
-                  <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                  {{-- <x-input-error :messages="$errors->get('description')" class="mt-2" /> --}}
               </div>
 
               <div class="mt-4">
-                  <x-input-label for="attachment" :value="__('Attachment (if any)')" />
-                  <x-file-input name="attachment" id="attachment" class="mt-2"/>
-                  <x-input-error :messages="$errors->get('attachment')" class="mt-2" />
+                  <x-input-label for="attachments" :value="__('Attachment (if any)')" />
+                  <x-file-input name="attachments" id="attachments" class="mt-2"/>
+                  <x-input-error :messages="$errors->get('attachments')" class="mt-2" />
               </div>
 
               <div class="flex items-center justify-end mt-4">
