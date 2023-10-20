@@ -50,16 +50,15 @@ class TicketController extends Controller
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
         $ticket->update($request->except('attachments'));
+        
         if ($request->has('status')) {
-          // $user = User::find($ticket->user_id);
           $ticket->user->notify(new TicketUpdatedNotification($ticket));
-          // return (new TicketUpdatedNotification($ticket))->toMail($user);
         }
         if($request->file('attachments')){
           Storage::disk('public')->delete($ticket->attachments);
           $this->StoreAttachment($request, $ticket);
         }
-        return view('tickets.index')->with('message', 'you have updated ticket succeffully!!!');
+        return redirect(route('tickets.index'));
     }
     public function destroy(Ticket $ticket)
     {

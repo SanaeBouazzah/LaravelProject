@@ -1,41 +1,46 @@
-@if (session('message'))
-    <p style="color:red;">{{session('message')}}</p>
-@endif
-<fieldset style="width:50%; marign:0 auto;">
-  <legend><h4>Ticket :has created at: {{$ticket->created_at}}</h4></legend>
-  <div>
-    <p>{{$ticket->title}}</p>
-    <p>{{$ticket->description}}</p>
-    @if ($ticket->attachments)
-    <a href="{{'/storage/'.$ticket->attachments}}" target="_blank">attachment</a>
-    @endif
-  </div>
-  <br/>
+<x-app-layout>
+  <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+      <h1 class="text-dark text-lg font-bold">{{ $ticket->title }}</h1>
+      <div class="w-full sm:max-w-xl mt-6 px-6 py-4 bg-dark dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+          <div class="text-dark flex justify-between py-4">
+              <p>{{ $ticket->description }}</p>
+              <p>{{ $ticket->created_at->diffForHumans() }}</p>
+              @if ($ticket->attachment)
+                  <a href="{{ '/storage/' . $ticket->attachment }}" target="_blank">Attachment</a>
+              @endif
+          </div>
 
-  <a href="{{route('tickets.edit', $ticket)}}">Edit</a>
-  <form action="{{route('tickets.destroy', $ticket->id)}}" method="POST">
-    @csrf
-    @method('delete')
-    <button>Delete</button>
-  </form>
-  @if (auth()->user()->isAdmin)
-  <div class="flex">
-    <form action="{{route('tickets.update', $ticket)}}" method="post">
-      @csrf
-      @method('patch')
-      <input type="hidden" name="status" value="resolved">
-      <button>Resolve</button>
-    </form>
-    <form action="{{route('tickets.update', $ticket)}}" method="post">
-      @csrf
-      @method('patch')
-      <input type="hidden" name="status" value="rejected">
-    <button>Reject</button>
-  </div>
-</form>
-  @else 
-  <p>Status : {{$ticket->status}}</p>
-  @endif
-</fieldset>
+          <div class="flex justify-between">
+              <div class="flex">
+                  <a href="{{ route('tickets.edit', $ticket->id) }}">
+                      <x-primary-button>Edit</x-primary-button>
+                  </a>
 
-<a href="{{route('tickets.create')}}">Go Back</a>
+                  <form class="ml-2" action="{{ route('tickets.destroy', $ticket->id) }}" method="post">
+                      @method('delete')
+                      @csrf
+                      <x-primary-button>Delete</x-primary-button>
+                  </form>
+              </div>
+              @if (auth()->user()->isAdmin)
+                  <div class="flex">
+                      <form action="{{ route('tickets.update', $ticket->id) }}" method="post">
+                          @csrf
+                          @method('patch')
+                          <input type="hidden" name="status" value="resolved" />
+                          <x-primary-button>Resolve</x-primary-button>
+                      </form>
+                      <form action="{{ route('ticket.update', $ticket->id) }}" method="post">
+                          @csrf
+                          @method('patch')
+                          <input type="hidden" name="status" value="rejected" />
+                          <x-primary-button class="ml-2">Reject</x-primary-button>
+                      </form>
+                  </div>
+              @else
+                  <p class="text-dark">Status: {{ $ticket->status }} </p>
+              @endif
+          </div>
+      </div>
+  </div>
+</x-app-layout>
