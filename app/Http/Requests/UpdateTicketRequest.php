@@ -27,7 +27,7 @@ class UpdateTicketRequest extends FormRequest
             'title' => [ 'string', 'max:255'],
             'description' => ['string'],
             'status'  =>  ['string', Rule::in(array_column(TicketStatus::cases(), 'value'))],
-            'attachment' => ['sometimes', 'file', 'mimes:jpg,jpeg,png,pdf'],
+            'attachments' => ['sometimes', 'file', 'mimes:jpg,jpeg,png,pdf'],
           ];
     }
 }
