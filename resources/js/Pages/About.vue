@@ -3,6 +3,6 @@
   <h1>hello from About</h1>
 </template>
 <script setup>
-import {Link} from "@inertiajs/vue3"
+import {Link} from "@inertiajs/vue3";
 
 </script>
