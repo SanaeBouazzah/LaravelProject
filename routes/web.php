@@ -57,4 +57,7 @@ Route::middleware('auth')->group(function(){
 Route::get('test', function(){
   return Inertia::render('Test');
 });
+Route::get('about', function(){
+  return Inertia::render('About');
+});
 
