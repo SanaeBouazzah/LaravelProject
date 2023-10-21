@@ -54,6 +54,7 @@ Route::get('/auth/callback', function () {
 Route::middleware('auth')->group(function(){
   Route::resource('/tickets', TicketController::class);
 });
-Route::get('AR', function(){
+Route::get('test', function(){
   return Inertia::render('Test');
 });
+
