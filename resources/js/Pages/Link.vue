@@ -5,5 +5,5 @@
 <script>
 import {Link} from "@inertiajs/vue3";
 import {defineProps} from 'vue';
-defineProps('name', 'component', 'href');
+defineProps(['name', 'component', 'href']);
 </script>
